@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "timestream:WriteRecords"
+      ],
+      "Resource": "arn:aws:timestream:${aws_region_name}:${aws_account_id}:database/${timestream_db_name}/table/${timestream_tbl_name}"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "timestream:DescribeEndpoints"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
