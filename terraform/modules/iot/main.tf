@@ -136,18 +136,18 @@ resource "aws_iot_topic_rule" "iot_topic_rule_timestream" {
   }
 }
 
-#resource "aws_iot_topic_rule" "iot_topic_rule_opensearch" {
-#  name        = "iot_topic_rule_opensearch"
-#  description = "OpenSearch Rule"
-#  enabled     = true
-#  sql         = "SELECT TIMESTAMP as timestamp, HUMIDITY, TEMPERATURE, DEVICE_NAME FROM 'data/${aws_iot_thing.iot_thing.name}'"
-#  sql_version = "2016-03-23"
-#
-#  elasticsearch {
-#    endpoint = "https://${var.opensearch_endpoint}"
-#    role_arn = var.iam_role_opensearch_arn
-#    id       = "$${newuuid()}"
-#    index    = "timestamp"
-#    type     = "timestamp"
-#  }
-#}
+resource "aws_iot_topic_rule" "iot_topic_rule_opensearch" {
+  name        = "iot_topic_rule_opensearch"
+  description = "OpenSearch Rule"
+  enabled     = true
+  sql         = "SELECT TIMESTAMP as timestamp, HUMIDITY, TEMPERATURE, DEVICE_NAME FROM 'data/${aws_iot_thing.iot_thing.name}'"
+  sql_version = "2016-03-23"
+
+  elasticsearch {
+    endpoint = "https://${var.opensearch_endpoint}"
+    role_arn = var.iam_role_opensearch_arn
+    id       = "$${newuuid()}"
+    index    = "timestamp"
+    type     = "timestamp"
+  }
+}
